@@ -1,19 +1,5 @@
-# @hex-engine/2d game
+This is a game where you are a sheepdog and you herd the sheep.
 
-This repo was created using `create-hex-engine-game`.
+It's still a work in progress.
 
-## Usage
-
-To run a development webserver for your game locally:
-
-```sh
-npm start
-```
-
-To build a production version of your game for redistribution:
-
-```sh
-npm run build
-```
-
-For more info, head on over to [Hex Engine's website](https://hex-engine.dev).
+You can view the latest version at https://sheep-herder.netlify.com/
