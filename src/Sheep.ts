@@ -65,13 +65,13 @@ export default function Sheep(position: Point) {
   });
 
   useDraw((context) => {
-    const isScared = !scareWearOffTimer.hasReachedSetTime();
+    // const isScared = !scareWearOffTimer.hasReachedSetTime();
 
-    if (isScared) {
-      context.fillStyle = "magenta";
-    } else {
-      context.fillStyle = "#eee";
-    }
+    // if (isScared) {
+    //   context.fillStyle = "magenta";
+    // } else {
+    context.fillStyle = "#eee";
+    // }
     geometry.shape.draw(context, "fill");
   });
 
