@@ -1,0 +1,17 @@
+{
+  "name": "sheep-herder",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@hex-engine/2d": "^0.1.16"
+  },
+  "devDependencies": {
+    "hex-engine-scripts": "^0.1.1",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "hex-engine-scripts dev",
+    "dev": "hex-engine-scripts dev",
+    "build": "hex-engine-scripts build"
+  }
+}
