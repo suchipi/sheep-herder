@@ -7,7 +7,6 @@ import {
   Point,
   Component,
   useUpdate,
-  useDraw,
 } from "@hex-engine/2d";
 import Sheep from "./Sheep";
 
@@ -48,10 +47,6 @@ export default function ScaresSheep(position: Point) {
   });
 
   // useDraw((context) => {
-  //   // TODO: looks like this is inheriting the top-left draw from its parent, which doesn't make sense.
-  //   // We need to change 2d to the top-left adjustment is *only* made on the last child; not for every ancestor.
-  //   context.translate(2.5, 2.5);
-
   //   context.lineWidth = 1;
   //   context.strokeStyle = "blue";
   //   context.setLineDash([5, 5]);

@@ -19,7 +19,7 @@ import BarkButton from "./BarkButton";
 export default function Dog(position: Point) {
   useType(Dog);
 
-  const radius = 5;
+  const radius = 10;
 
   const geometry = useNewComponent(() =>
     Geometry({
@@ -64,12 +64,6 @@ export default function Dog(position: Point) {
 
     if (gamepad.leftStick.magnitude > 0) {
       movement = gamepad.leftStick.clone();
-      // TODO: is this a bug in 2d? the y-component is backwards here
-      movement = Vector.fromPoints(
-        zeroPoint,
-        movement.toPoint().multiplyYMutate(-1)
-      );
-
       movement.magnitude = 0.1 * speed * delta;
     }
 
