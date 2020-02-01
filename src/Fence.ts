@@ -3,12 +3,12 @@ import {
   useNewComponent,
   Geometry,
   Polygon,
-  Point,
+  Vector,
   Physics,
   useDraw,
 } from "@hex-engine/2d";
 
-export default function Fence(width: number, height: number, position: Point) {
+export default function Fence(width: number, height: number, position: Vector) {
   useType(Fence);
 
   const geometry = useNewComponent(() =>

@@ -3,8 +3,6 @@ import {
   useNewComponent,
   Geometry,
   Circle,
-  Point,
-  useDraw,
   Mouse,
 } from "@hex-engine/2d";
 

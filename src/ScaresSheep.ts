@@ -4,13 +4,13 @@ import {
   useNewComponent,
   Geometry,
   Circle,
-  Point,
+  Vector,
   Component,
   useUpdate,
 } from "@hex-engine/2d";
 import Sheep from "./Sheep";
 
-export default function ScaresSheep(position: Point) {
+export default function ScaresSheep(position: Vector) {
   useType(ScaresSheep);
 
   const radius = 100;

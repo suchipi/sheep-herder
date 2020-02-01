@@ -3,16 +3,14 @@ import {
   useNewComponent,
   Geometry,
   Circle,
-  Point,
+  Vector,
   Physics,
   useDraw,
   useUpdate,
-  Vector,
-  useEntityTransforms,
   Timer,
 } from "@hex-engine/2d";
 
-export default function Sheep(position: Point) {
+export default function Sheep(position: Vector) {
   useType(Sheep);
 
   const radius = 15;
@@ -29,12 +27,12 @@ export default function Sheep(position: Point) {
 
   const wanderSpeed = 1;
   const runSpeed = 4;
-  const zeroPoint = new Point(0, 0);
+  const zeroPoint = new Vector(0, 0);
 
   const scareWearOffTimer = useNewComponent(Timer);
 
   const wanderTimer = useNewComponent(Timer);
-  const wanderTarget = new Point(0, 0);
+  const wanderTarget = new Vector(0, 0);
 
   useUpdate((delta) => {
     const isScared = !scareWearOffTimer.hasReachedSetTime();
@@ -50,10 +48,10 @@ export default function Sheep(position: Point) {
 
     if (!isScared) {
       // Wander around
-      const force = Vector.fromPoints(zeroPoint, wanderTarget);
+      const force = wanderTarget.clone();
       if (force.magnitude > wanderSpeed) {
         force.magnitude = 0.1 * wanderSpeed * delta;
-        physics.setVelocity(force.toPoint());
+        physics.setVelocity(force);
       } else {
         physics.setVelocity(zeroPoint);
       }
@@ -77,20 +75,20 @@ export default function Sheep(position: Point) {
 
   return {
     worldPosition: geometry.worldPosition,
-    runFrom(worldPoint: Point, delta: number) {
+    runFrom(worldPoint: Vector, delta: number) {
       scareWearOffTimer.setToTimeFromNow(Math.random() * 2000 + 1000);
 
       const ownWorldPos = geometry.worldPosition();
       const localPointToRunFrom = worldPoint.subtract(ownWorldPos);
 
-      const force = Vector.fromPoints(zeroPoint, localPointToRunFrom);
+      const force = localPointToRunFrom.clone();
 
       // Rotate the angle PI radians so they run *away* from the thing instead of towards it
-      force.angle.addMutate(Math.PI);
+      force.rotateMutate(Math.PI);
 
       if (force.magnitude > runSpeed) {
         force.magnitude = 0.1 * runSpeed * delta;
-        physics.setVelocity(force.toPoint());
+        physics.setVelocity(force);
       } else {
         physics.setVelocity(zeroPoint);
       }

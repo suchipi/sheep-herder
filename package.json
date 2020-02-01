@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@hex-engine/2d": "^0.1.17"
+    "@hex-engine/2d": "^0.2.0"
   },
   "devDependencies": {
     "hex-engine-scripts": "^0.1.1",

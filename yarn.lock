@@ -817,10 +817,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@hex-engine/2d@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@hex-engine/2d/-/2d-0.1.17.tgz#4cb1ed9b82dccbe55ba9b9deb4d1b701ee8b3ce5"
-  integrity sha512-nlI3+ghu4CF4oko3kXnvaiUgR73iA67S/lHB4b5a3gwA0hdRctmvykUkNGterMDHccScGLtZBwfgyiniLiEPoA==
+"@hex-engine/2d@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@hex-engine/2d/-/2d-0.2.0.tgz#b98630bc8ab1fb147b3dc5d765db705beeda486b"
+  integrity sha512-Tq2Xbpv/s7vfm788wrv6sVhDLb8cAGyAM0O518iZKz1rsk25neHcrGvb1kxCycr61CW8HMhNPEEKID/PjKEYTA==
   dependencies:
     "@hex-engine/core" "^0.1.4"
     "@hex-engine/inspector" "^0.1.7"

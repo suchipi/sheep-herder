@@ -4,7 +4,7 @@ import {
   useChild,
   Canvas,
   Physics,
-  Point,
+  Vector,
   useWindowSize,
 } from "@hex-engine/2d";
 import Dog from "./Dog";
@@ -44,11 +44,11 @@ export default function Root() {
 
   useNewComponent(() =>
     Physics.Engine({
-      gravity: new Point(0, 0),
+      gravity: new Vector(0, 0),
     })
   );
 
-  const canvasCenter = new Point(
+  const canvasCenter = new Vector(
     canvas.element.width / 2,
     canvas.element.height / 2
   );
@@ -56,12 +56,12 @@ export default function Root() {
   useChild(() => Dog(canvasCenter.clone()));
 
   // Vertical fences
-  useChild(() => Fence(25, 640, new Point(12.5, 320)));
-  useChild(() => Fence(25, 640, new Point(640 - 12.5, 320)));
+  useChild(() => Fence(25, 640, new Vector(12.5, 320)));
+  useChild(() => Fence(25, 640, new Vector(640 - 12.5, 320)));
 
   // Horizontal fences
-  useChild(() => Fence(640, 25, new Point(320, 12.5)));
-  useChild(() => Fence(640, 25, new Point(320, 640 - 12.5)));
+  useChild(() => Fence(640, 25, new Vector(320, 12.5)));
+  useChild(() => Fence(640, 25, new Vector(320, 640 - 12.5)));
 
   const sheepRow0 = canvasCenter.subtractY(200);
 

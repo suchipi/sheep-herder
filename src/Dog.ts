@@ -3,7 +3,6 @@ import {
   useNewComponent,
   Geometry,
   Circle,
-  Point,
   Physics,
   useDraw,
   Mouse,
@@ -13,13 +12,12 @@ import {
   useChild,
   Gamepad,
   Aseprite,
-  Angle,
 } from "@hex-engine/2d";
 import ScaresSheep from "./ScaresSheep";
 import BarkButton from "./BarkButton";
 import borderCollie from "./border-collie.aseprite";
 
-export default function Dog(position: Point) {
+export default function Dog(position: Vector) {
   useType(Dog);
 
   const aseprite = useNewComponent(() => Aseprite(borderCollie));
@@ -49,18 +47,18 @@ export default function Dog(position: Point) {
   lowLevelMouse.onMouseDown(() => (isPressing = true));
   lowLevelMouse.onMouseUp(() => (isPressing = false));
 
-  const size = new Point(geometry.shape.width, geometry.shape.height);
+  const size = new Vector(geometry.shape.width, geometry.shape.height);
   const halfSize = size.divide(2);
-  const zeroPoint = new Point(0, 0);
+  const zeroPoint = new Vector(0, 0);
   const speed = 5;
 
   const gamepad = useNewComponent(() => Gamepad({}));
-  const facing = new Angle(Math.PI / 4);
+  let facing = Math.PI / 4;
 
   useUpdate((delta) => {
     let movement: Vector | null = null;
     if (isPressing) {
-      const potentialMovement = Vector.fromPoints(zeroPoint, mouse.position);
+      const potentialMovement = mouse.position.clone();
       if (potentialMovement.magnitude > speed) {
         potentialMovement.magnitude = 0.1 * speed * delta;
         movement = potentialMovement;
@@ -73,13 +71,10 @@ export default function Dog(position: Point) {
     }
 
     if (movement) {
-      physics.setVelocity(movement.toPoint());
+      physics.setVelocity(movement);
 
-      const movementWithXInverted = Vector.fromPoints(
-        zeroPoint,
-        movement.angle.toPoint().multiplyXMutate(-1)
-      );
-      facing.radians = movementWithXInverted.angle.radians;
+      const movementWithXInverted = movement.multiplyX(-1);
+      facing = movementWithXInverted.angle;
     } else {
       physics.setVelocity(zeroPoint);
     }
@@ -103,9 +98,7 @@ export default function Dog(position: Point) {
     }
 
     const frameCount = aseprite.currentAnim.frames.length;
-    let frameForRotation = Math.floor(
-      (facing.radians / (Math.PI * 2)) * frameCount
-    );
+    let frameForRotation = Math.floor((facing / (Math.PI * 2)) * frameCount);
     frameForRotation -= frameCount / 4;
     frameForRotation = frameForRotation % frameCount;
     if (frameForRotation < 0) {
@@ -122,7 +115,7 @@ export default function Dog(position: Point) {
     aseprite.draw(context);
   });
 
-  const scaresSheep = useChild(() => ScaresSheep(new Point(0, 0)))
+  const scaresSheep = useChild(() => ScaresSheep(new Vector(0, 0)))
     .rootComponent;
 
   const originalShape = scaresSheep.geometry.shape;
